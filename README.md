@@ -7,9 +7,9 @@
 [获取](https://secure.quantumca.com.cn/api-credentials) `AccessKey` 秘钥对.
 
 此SDK包仅面向开发者提供支持，若您是分销商，您可以需要:
-- [Digital Sign® Module for WHMCS]()
-- [Digital Sign® Module for HostBill]()
-- [Digital Sign® Module for 宝塔(bt.cn)]()
+- [QuantumCA Module for WHMCS]()
+- [QuantumCA Module for HostBill]()
+- [QuantumCA Module for 宝塔(bt.cn)]()
 
 ## 安装
 
