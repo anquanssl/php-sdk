@@ -1,6 +1,6 @@
 <?php
 
-namespace DigitalSign\Sdk\Scheme\ProductList;
+namespace QuantumCA\Sdk\Scheme\ProductList;
 
 /**
  * @property float $Quarterly 季付价格

@@ -1,6 +1,6 @@
 <?php
 
-namespace DigitalSign\Sdk\Scheme;
+namespace QuantumCA\Sdk\Scheme;
 
 /**
  * 添加DCV接口

@@ -1,8 +1,8 @@
 <?php
 
-namespace DigitalSign\Sdk\Resources;
+namespace QuantumCA\Sdk\Resources;
 
-use DigitalSign\Sdk\Client;
+use QuantumCA\Sdk\Client;
 
 abstract class AbstractResource
 {

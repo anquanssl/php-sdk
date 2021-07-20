@@ -1,6 +1,6 @@
 <?php
 
-namespace DigitalSign\Sdk\Scheme\Certificate;
+namespace QuantumCA\Sdk\Scheme\Certificate;
 
 /**
  * @property DnsDCVDetail $dns

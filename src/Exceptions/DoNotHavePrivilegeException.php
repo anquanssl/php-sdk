@@ -1,6 +1,6 @@
 <?php
 
-namespace DigitalSign\Sdk\Exceptions;
+namespace QuantumCA\Sdk\Exceptions;
 
 use Exception;
 

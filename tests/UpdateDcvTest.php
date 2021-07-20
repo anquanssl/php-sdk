@@ -1,8 +1,8 @@
 <?php
 
-namespace DigitalSign\Sdk\Test;
+namespace QuantumCA\Sdk\Test;
 
-use DigitalSign\Sdk\Requests\CertificateUpdateDcvRequest;
+use QuantumCA\Sdk\Requests\CertificateUpdateDcvRequest;
 
 final class UpdateDcvTest extends TestCase
 {
@@ -10,7 +10,7 @@ final class UpdateDcvTest extends TestCase
     {
         $domain = 'testapi.staging.digital-sign.com.cn';
         $request = new CertificateUpdateDcvRequest();
-        $request->digitalsign_id = $_SERVER['DIGITALSIGN_ORDER_ID'];
+        $request->QuantumCA_id = $_SERVER['QuantumCA_ORDER_ID'];
         $request->domain = $domain;
         $request->type = 'email';
         $request->value = 'admin@' . $domain;

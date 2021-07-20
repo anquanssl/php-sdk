@@ -1,9 +1,9 @@
 <?php
 
-namespace DigitalSign\Sdk\Scheme;
+namespace QuantumCA\Sdk\Scheme;
 
 /**
- * @property \DigitalSign\Sdk\Scheme\ProductList\ProductListDataProductsItem[] $products
+ * @property \QuantumCA\Sdk\Scheme\ProductList\ProductListDataProductsItem[] $products
  *
  * @link https://www.digital-sign.com.cn/api/product-list
  */

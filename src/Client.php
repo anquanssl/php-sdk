@@ -1,19 +1,19 @@
 <?php
 
-namespace DigitalSign\Sdk;
+namespace QuantumCA\Sdk;
 
-use DigitalSign\Sdk\Exceptions\DoNotHavePrivilegeException;
-use DigitalSign\Sdk\Exceptions\InsufficientBalanceException;
-use DigitalSign\Sdk\Exceptions\RequestException;
-use DigitalSign\Sdk\Resources\Order;
-use DigitalSign\Sdk\Resources\Product;
-use DigitalSign\Sdk\Traits\SignTrait;
+use function GuzzleHttp\json_decode;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Validation\ValidationException;
+use QuantumCA\Sdk\Exceptions\DoNotHavePrivilegeException;
+use QuantumCA\Sdk\Exceptions\InsufficientBalanceException;
+use QuantumCA\Sdk\Exceptions\RequestException;
+use QuantumCA\Sdk\Resources\Order;
+use QuantumCA\Sdk\Resources\Product;
 
-use function GuzzleHttp\json_decode;
+use QuantumCA\Sdk\Traits\SignTrait;
 
 /**
  * @method mixed get($uri, $parameters = [])
@@ -23,11 +23,11 @@ class Client
 {
     use SignTrait;
 
-    const ORIGIN_API = 'https://api.digital-sign.com.cn';
+    const ORIGIN_API = 'https://ca.quantumca.com.cn/api/v1';
 
-    const ORIGIN_API_STAGING = 'https://staging.api.digital-sign.com.cn';
+    const ORIGIN_API_STAGING = 'https://staging.quantumca.com.cn/api/v1';
 
-    const ORIGIN_API_DEV = 'https://dev.api.digital-sign.com.cn';
+    const ORIGIN_API_DEV = 'https://dev.quantumca.limited/api/v1';
 
     const CODE_EXCEPTION_MAP = [
         'INSUFFICIENT_BALANCE' => InsufficientBalanceException::class,
@@ -91,7 +91,7 @@ class Client
      *
      * @param string $method GET、POST
      * @param array $arguments 第一个参数为API的路径，第二个参数为业务参数
-     * @return \DigitalSign\Sdk\Response\Interfaces\BaseResponse
+     * @return \QuantumCA\Sdk\Response\Interfaces\BaseResponse
      */
     public function __call($method, $arguments = [])
     {

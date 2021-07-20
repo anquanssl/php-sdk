@@ -1,6 +1,6 @@
 <?php
 
-namespace DigitalSign\Sdk\Requests;
+namespace QuantumCA\Sdk\Requests;
 
 /**
  * 购买证书请求

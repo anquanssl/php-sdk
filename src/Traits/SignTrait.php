@@ -1,6 +1,6 @@
 <?php
 
-namespace DigitalSign\Sdk\Traits;
+namespace QuantumCA\Sdk\Traits;
 
 /**
  * 签名部分

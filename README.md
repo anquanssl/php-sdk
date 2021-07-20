@@ -1,20 +1,20 @@
-# 𝐃𝐢𝐠𝐢𝐭𝐚𝐥 𝐒𝐢𝐠𝐧® 𝐏𝐮𝐛𝐥𝐢𝐜 𝐊𝐞𝐲 𝐈𝐧𝐟𝐫𝐚𝐬𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞's 𝐏𝐇𝐏 𝐒𝐃𝐊
+<h1><p align="center"><img src="https://secure.quantumca.com.cn/assets/logo/logo_dark_en.svg" width="450" style="width: 450px;"></p></h1>
 
-这是 [Digital Sign® Public Key Infrastructure](https://www.digital-sign.com.cn) 开放API的 PHP SDK.
+这是 [量子认证](https://www.quantumca.com.cn) 开放API的 PHP SDK.
 
-[![Build Status](https://travis-ci.com/digitalsign/sdk.svg?branch=master)](https://travis-ci.com/digitalsign/sdk)
+[![Build Status](https://travis-ci.com/quantumca/sdk.svg?branch=master)](https://travis-ci.com/quantumca/sdk)
 
-[获取](https://www.digital-sign.com.cn/dashboard/agent/access-key) `AccessKey` 秘钥对.
+[获取](https://secure.quantumca.com.cn/api-credentials) `AccessKey` 秘钥对.
 
 此SDK包仅面向开发者提供支持，若您是分销商，您可以需要:
-- [Digital Sign® Module for WHMCS](https://www.digital-sign.com.cn/download/modules/whmcs-latest.zip)
-- [Digital Sign® Module for HostBill](https://www.digital-sign.com.cn/download/modules/hostbill-latest.zip)
-- [Digital Sign® Module for 宝塔(bt.cn)](https://www.digital-sign.com.cn/download/modules/bt-latest.zip)
+- [Digital Sign® Module for WHMCS]()
+- [Digital Sign® Module for HostBill]()
+- [Digital Sign® Module for 宝塔(bt.cn)]()
 
 ## 安装
 
 ```bash
-composer require digitalsign/sdk -vvv
+composer require quantumca/sdk -vvv
 ```
 
 ## 使用
@@ -22,7 +22,7 @@ composer require digitalsign/sdk -vvv
 ```php
 <?php
 
-use DigitalSign\Sdk\Client;
+use QuantumCA\Sdk\Client;
 
 require __DIR__ . '/../vendor/autoload.php';
 

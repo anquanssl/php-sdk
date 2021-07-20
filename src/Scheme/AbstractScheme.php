@@ -1,6 +1,6 @@
 <?php
 
-namespace DigitalSign\Sdk\Scheme;
+namespace QuantumCA\Sdk\Scheme;
 
 abstract class AbstractScheme
 {

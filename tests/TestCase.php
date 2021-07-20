@@ -1,8 +1,8 @@
 <?php
 
-namespace DigitalSign\Sdk\Test;
+namespace QuantumCA\Sdk\Test;
 
-use DigitalSign\Sdk\Client;
+use QuantumCA\Sdk\Client;
 use PHPUnit\Framework\TestCase as AbstractTestCase;
 
 abstract class TestCase extends AbstractTestCase
@@ -10,13 +10,13 @@ abstract class TestCase extends AbstractTestCase
     /**
      * 获取 SDK 实例
      *
-     * @return \DigitalSign\Sdk\Client
+     * @return \QuantumCA\Sdk\Client
      */
     public function sdk()
     {
-        $access_key_id = $_SERVER['DIGITALSIGN_ACCESS_KEY_ID'];
-        $access_key_secret = $_SERVER['DIGITALSIGN_ACCESS_KEY_SECRET'];
-        $api_origin = $_SERVER['DIGITALSIGN_API_ORIGIN'];
+        $access_key_id = $_SERVER['QuantumCA_ACCESS_KEY_ID'];
+        $access_key_secret = $_SERVER['QuantumCA_ACCESS_KEY_SECRET'];
+        $api_origin = $_SERVER['QuantumCA_API_ORIGIN'];
 
         $sdk = new Client($access_key_id, $access_key_secret, $api_origin);
         return $sdk;

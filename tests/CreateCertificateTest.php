@@ -1,8 +1,8 @@
 <?php
 
-namespace DigitalSign\Sdk\Test;
+namespace QuantumCA\Sdk\Test;
 
-use DigitalSign\Sdk\Requests\CertificateCreateRequest;
+use QuantumCA\Sdk\Requests\CertificateCreateRequest;
 
 final class CreateCertificateTest extends TestCase
 {
@@ -23,7 +23,7 @@ final class CreateCertificateTest extends TestCase
         $request->notify_url = 'https://partner.app/notify';
 
         $result = $this->sdk()->order->certificateCreate($request);
-        $this->assertObjectHasAttribute('digitalsign_id', $result);
+        $this->assertObjectHasAttribute('QuantumCA_id', $result);
         $this->assertObjectHasAttribute('cost', $result);
         $this->assertObjectHasAttribute('status', $result);
         $this->assertObjectHasAttribute('dcv', $result);

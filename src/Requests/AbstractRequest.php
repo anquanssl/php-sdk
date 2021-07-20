@@ -1,6 +1,6 @@
 <?php
 
-namespace DigitalSign\Sdk\Requests;
+namespace QuantumCA\Sdk\Requests;
 
 use ArrayAccess;
 use ArrayObject;

@@ -1,11 +1,11 @@
 {
-    "name": "digitalsign/sdk",
-    "description": "The php sdk for Digital Sign® Public Key Infrastructure.",
+    "name": "quantumca/sdk",
+    "description": "The php sdk for QuantumCA.",
     "type": "library",
     "authors": [
         {
-            "name": "xiaohui.lam",
-            "email": "xiaohui.lam@aliyun.com"
+            "name": "tech",
+            "email": "develop@quantumca.com.cn"
         }
     ],
     "require": {
@@ -13,12 +13,12 @@
     },
     "autoload": {
         "psr-4": {
-            "DigitalSign\\Sdk\\": "src/"
+            "QuantumCA\\Sdk\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DigitalSign\\Sdk\\Test\\": "tests/"
+            "QuantumCA\\Sdk\\Test\\": "tests/"
         }
     },
     "license": "MIT",
