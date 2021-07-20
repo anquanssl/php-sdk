@@ -2,10 +2,10 @@
 
 namespace QuantumCA\Sdk;
 
-use function GuzzleHttp\json_decode;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use QuantumCA\Sdk\Exceptions\DoNotHavePrivilegeException;
 use QuantumCA\Sdk\Exceptions\InsufficientBalanceException;
@@ -129,7 +129,7 @@ class Client
             }
             return $json->data;
         } catch (ClientException $e) {
-            logger()->info('x', json_decode($e->getResponse()->getBody()->__toString(), true));
+            Log::info('x', json_decode($e->getResponse()->getBody()->__toString(), true));
             // 若不存在 Laravel's ValidationException 类，或者版本太低没有 withMessages 方法，抛出Guzzle的异常
             if (!class_exists(ValidationException::class) || !method_exists(ValidationException::class, 'withMessages')) {
                 throw $e;
@@ -141,7 +141,7 @@ class Client
             }
 
             $data = json_decode($response->getBody()->__toString(), true);;
-            logger()->info('validation_exception', $data);
+            Log::info('validation_exception', $data);
 
             if (JSON_ERROR_NONE !== json_last_error() || !isset($data['message'])) {
                 throw new ClientException('JSON DECODE ERROR', $e->getRequest(), $e->getResponse(), $e);

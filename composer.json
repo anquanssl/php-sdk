@@ -24,6 +24,8 @@
     "license": "MIT",
     "minimum-stability": "stable",
     "require-dev": {
-        "phpunit/phpunit": ">=5.0"
+        "phpunit/phpunit": ">=5.0",
+        "illuminate/support": "^8.51",
+        "illuminate/validation": "^8.51"
     }
 }
