@@ -2,4 +2,4 @@ vendor/
 composer.lock
 *.cache
 *.bak
-DS_Store
+.DS_Store

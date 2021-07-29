@@ -110,6 +110,7 @@ class Client
             $parameters = isset($arguments[1]) ? $arguments[1] : [];
             $parameters = $this->sign($resource, $parameters, $this->accessKeyId, $this->accessKeySecret);
 
+            logger()->info('quantum_req', (array) $parameters);
             $response = $http->{$method}($uri, [
                 ($method == 'get' ? RequestOptions::QUERY : RequestOptions::JSON) => $parameters,
             ]);
