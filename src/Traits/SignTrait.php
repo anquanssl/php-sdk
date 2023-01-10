@@ -64,10 +64,26 @@ trait SignTrait
 
         $parameters = $this->everthingStringize($parameters);
 
-        ksort($parameters);
+        $this->sortNestedArrayAssoc($parameters);
         date_default_timezone_set($defaultTimeZone);
 
         $parameters['sign'] = base64_encode(hash_hmac('sha256', $resource . '?' . http_build_query($parameters), $accessKeySecret, true));
         return $parameters;
+    }
+
+    /**
+     * 递归排序数组
+     */
+    protected function sortNestedArrayAssoc(&$a)
+    {
+        if (!is_array($a)) {
+            return false;
+        }
+
+        ksort($a);
+        foreach ($a as $k => $v) {
+            $this->sortNestedArrayAssoc($a[$k]);
+        }
+        return true;
     }
 }
