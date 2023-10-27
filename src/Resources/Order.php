@@ -7,6 +7,7 @@ use QuantumCA\Sdk\Requests\CertificateCreateRequest;
 use QuantumCA\Sdk\Requests\CertificateDetailRequest;
 use QuantumCA\Sdk\Requests\CertificateRefundRequest;
 use QuantumCA\Sdk\Requests\CertificateReissueRequest;
+use QuantumCA\Sdk\Requests\CertificateRemoveSanRequest;
 use QuantumCA\Sdk\Requests\CertificateUpdateDcvRequest;
 use QuantumCA\Sdk\Requests\CertificateValidateDcvRequest;
 
@@ -89,6 +90,19 @@ class Order extends AbstractResource
     public function certificateAddSan(CertificateAddSanRequest $certificateAddSanRequest)
     {
         return $this->client->post('certificate/add-san', $certificateAddSanRequest->toArray());
+    }
+    
+    /**
+     * 移除无法验证的域名
+     *
+     * @param CertificateRemoveSanRequest $certificateRemoveSanRequest
+     * @return \QuantumCA\Sdk\Scheme\CertificateRefundScheme
+     *
+     * @link https://www.digital-sign.com.cn/api/cert-refund
+     */
+    public function certificateRemoveSan(CertificateRemoveSanRequest $certificateRemoveSanRequest)
+    {
+        return $this->client->post('certificate/remove-san', $certificateRemoveSanRequest->toArray());
     }
 
     /**
