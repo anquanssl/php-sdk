@@ -1,4 +1,4 @@
-<h1><p align="center"><img src="https://www.quantumca.com.cn/assets/logo/logo_dark_en.svg" width="450" style="width: 450px;"></p></h1>
+<h1><p align="center"><img src="https://www.annquanssl.com/assets/logo/logo_dark_en.svg" width="450" style="width: 450px;"></p></h1>
 
 这是 [安全SSL](https://www.anquanssl.com) 开放API的 PHP SDK.
 
