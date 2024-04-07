@@ -1,15 +1,20 @@
-<h1><p align="center"><img src="https://www.anquanssl.com/assets/logo/logo.svg" width="450" style="width: 450px;"></p></h1>
+[<p align="center"><img src="https://github.com/anquanssl/.github/raw/main/profile/logo_dark.png" width="600" height="85"/></p>](https://www.anquanssl.com?__utm_from=github-org-profile#gh-dark-mode-only)
+[<p align="center"><img src="https://github.com/anquanssl/.github/raw/main/profile/logo_light.png" width="600" height="85"/></p>](https://www.anquanssl.com?__utm_from=github-org-profile#gh-light-mode-only)
+
+## AnquanSSL
+
+AnquanSSL, which means "Security SSL", also known as "安全 SSL" in Mandarin, was founded in 2018 with the mission to provide affordable, secure, and enhanced TLS utilization experiences in the Greater China market.
 
 这是 [安全SSL](https://www.anquanssl.com) 开放API的 PHP SDK.
 
-[![Build Status](https://travis-ci.com/quantumca/sdk.svg?branch=master)](https://travis-ci.com/quantumca/sdk)
+[![Build Status](https://travis-ci.com/anquanssl/sdk.svg?branch=master)](https://travis-ci.com/anquanssl/sdk)
 
 [获取](https://www.anquanssl.com/dashboard/api-credentials) `AccessKey` 秘钥对.
 
 此SDK包仅面向开发者提供支持，若您是分销商，您可以需要:
-- [QuantumCA Module for WHMCS]()
-- [QuantumCA Module for HostBill]()
-- [QuantumCA Module for 宝塔(bt.cn)]()
+- [AnquanSSL Module for WHMCS]()
+- [AnquanSSL Module for HostBill]()
+- [AnquanSSL Module for 宝塔(bt.cn)]()
 
 ## 安装
 
