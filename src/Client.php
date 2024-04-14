@@ -23,7 +23,7 @@ class Client
 {
     use SignTrait;
 
-    const ORIGIN_API = 'https://ca.quantumca.com.cn/api/v1';
+    const ORIGIN_API = 'https://api.orion.pki.plus/api/v1';
 
     const ORIGIN_API_STAGING = 'https://staging.quantumca.com.cn/api/v1';
 
