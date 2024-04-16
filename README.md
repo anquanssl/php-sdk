@@ -3,7 +3,7 @@
 
 ## AnquanSSL
 
-AnquanSSL, which means "Security SSL", also known as "安全 SSL" in Mandarin, was founded in 2018 with the mission to provide affordable, secure, and enhanced TLS utilization experiences in the Greater China market.
+AnquanSSL, aka "Security SSL", also known as "安全 SSL" in Mandarin, founded in 2018, and our mission is providing affordable, secure, and enhanced TLS utilization experiences in the Greater China market.
 
 这是 [安全SSL](https://www.anquanssl.com) 开放API的 PHP SDK.
 
