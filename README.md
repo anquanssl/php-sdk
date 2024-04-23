@@ -11,10 +11,18 @@ AnquanSSL, aka "Security SSL", also known as "安全 SSL" in Mandarin, founded i
 
 [获取](https://www.anquanssl.com/dashboard/api-credentials) `AccessKey` 秘钥对.
 
-此SDK包仅面向开发者提供支持，若您是分销商，您可以需要:
+此SDK包仅面向开发者提供支持，若您是分销商，您可能需要:
 - [AnquanSSL Module for WHMCS]()
 - [AnquanSSL Module for HostBill]()
 - [AnquanSSL Module for 宝塔(bt.cn)]()
+
+如果您要其它编程语言的开发者，您可能需要
+- [AnquanSSL PHP SDK](https://github.com/anquanssl/sdk)
+- [AnquanSSL Python SDK](https://github.com/anquanssl/python-sdk)
+- [AnquanSSL NodeJS SDK](https://github.com/anquanssl/nodejs-sdk)
+- [AnquanSSL Golang SDK](https://github.com/anquanssl/golang-sdk)
+- [AnquanSSL Java SDK](https://github.com/anquanssl/java-sdk)
+
 
 ## 安装
 
