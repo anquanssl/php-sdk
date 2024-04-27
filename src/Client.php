@@ -5,7 +5,6 @@ namespace QuantumCA\Sdk;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use QuantumCA\Sdk\Exceptions\DoNotHavePrivilegeException;
 use QuantumCA\Sdk\Exceptions\InsufficientBalanceException;
@@ -24,10 +23,6 @@ class Client
     use SignTrait;
 
     const ORIGIN_API = 'https://api.orion.pki.plus/api/v1';
-
-    const ORIGIN_API_STAGING = 'https://staging.quantumca.com.cn/api/v1';
-
-    const ORIGIN_API_DEV = 'https://dev.quantumca.limited/api/v1';
 
     const CODE_EXCEPTION_MAP = [
         'INSUFFICIENT_BALANCE' => InsufficientBalanceException::class,
@@ -110,7 +105,9 @@ class Client
             $parameters = isset($arguments[1]) ? $arguments[1] : [];
             $parameters = $this->sign($resource, $parameters, $this->accessKeyId, $this->accessKeySecret);
 
-            logger()->info('quantum_req', (array) $parameters);
+            if (function_exists('logger')) {
+                logger()->debug('ssl_client_request', (array) $parameters);
+            }
             $response = $http->{$method}($uri, [
                 ($method == 'get' ? RequestOptions::QUERY : RequestOptions::JSON) => $parameters,
             ]);
@@ -130,7 +127,9 @@ class Client
             }
             return $json->data;
         } catch (ClientException $e) {
-            Log::info('x', json_decode($e->getResponse()->getBody()->__toString(), true));
+            if (function_exists('logger')) {
+                logger()->debug('ssl_client_error_response', json_decode($e->getResponse()->getBody()->__toString(), true));
+            }
             // 若不存在 Laravel's ValidationException 类，或者版本太低没有 withMessages 方法，抛出Guzzle的异常
             if (!class_exists(ValidationException::class) || !method_exists(ValidationException::class, 'withMessages')) {
                 throw $e;
@@ -142,7 +141,9 @@ class Client
             }
 
             $data = json_decode($response->getBody()->__toString(), true);;
-            Log::info('validation_exception', $data);
+            if (function_exists('logger')) {
+                logger()->debug('ssl_client_error_validation_exception', $data);
+            }
 
             if (JSON_ERROR_NONE !== json_last_error() || !isset($data['message'])) {
                 throw new ClientException('JSON DECODE ERROR', $e->getRequest(), $e->getResponse(), $e);

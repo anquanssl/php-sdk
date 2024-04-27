@@ -5,7 +5,7 @@ namespace QuantumCA\Sdk\Requests;
 /**
  * 重签证书请求
  *
- * @property string $quantum_id 必传,下单时返回的id
+ * @property string $service_id 必传,下单时返回的id
  * @property string[] $domain_dcv 必传
  * @property string $csr 必传,客户上传的CSR
  * @property integer $renew OV/EV必传,是否为续费订单
@@ -24,8 +24,6 @@ namespace QuantumCA\Sdk\Requests;
  * @property string $contact_phone OV/EV必传,联系人电话
  * @property string $contact_email 必传,联系人邮箱
  * @property string $notify_url 必传,证书颁发后的通知地址
- *
- * @link https://www.digital-sign.com.cn/api/cert-reissue
  */
 class CertificateReissueRequest extends AbstractRequest
 {

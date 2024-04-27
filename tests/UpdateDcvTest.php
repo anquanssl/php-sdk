@@ -8,7 +8,7 @@ final class UpdateDcvTest extends TestCase
 {
     public function testUpdateDcv()
     {
-        $domain = 'testapi.staging.digital-sign.com.cn';
+        $domain = 'www.example.org';
         $request = new CertificateUpdateDcvRequest();
         $request->QuantumCA_id = $_SERVER['QuantumCA_ORDER_ID'];
         $request->domain = $domain;

@@ -41,8 +41,6 @@ trait SignTrait
      * @param string $accessKeyId
      * @param string $accessKeySecret
      * @return array 带签名的参数
-     *
-     * @link https://www.digital-sign.com.cn/api/signature-introduce
      */
     public function sign($resource, $parameters, $accessKeyId, $accessKeySecret)
     {

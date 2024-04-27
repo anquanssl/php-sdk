@@ -8,7 +8,7 @@ final class CreateCertificateTest extends TestCase
 {
     public function testCreate()
     {
-        $domain = 'testapi.staging.digital-sign.com.cn';
+        $domain = 'www.example.org';
         $request = new CertificateCreateRequest();
         $request->product_id = 6;
         $request->period = 'Quarterly';
@@ -16,7 +16,7 @@ final class CreateCertificateTest extends TestCase
         $request->unique_id = uniqid();
         $request->product_id = 6;
         $request->period = 'Quarterly';
-        $request->contact_email = 'xiaohui.lam@e.hexdata.cn';
+        $request->contact_email = 'test@example.org';
         $request->domain_dcv = [
             $domain => 'dns',
         ];

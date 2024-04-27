@@ -8,12 +8,12 @@ final class ReissueCertificateTest extends TestCase
 {
     public function testReissue()
     {
-        $domain = 'testapi.staging.digital-sign.com.cn';
+        $domain = 'www.example.org';
         $request = new CertificateReissueRequest();
         $request->QuantumCA_id = $_SERVER['QuantumCA_ORDER_ID'];
         $request->csr = $this->csr();
         $request->period = 'Quarterly';
-        $request->contact_email = 'xiaohui.lam@e.hexdata.cn';
+        $request->contact_email = 'test@example.org';
         $request->domain_dcv = [
             $domain => 'dns',
         ];

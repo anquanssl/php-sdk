@@ -18,8 +18,6 @@ class Order extends AbstractResource
      *
      * @param CertificateCreateRequest $certificateCreateRequest
      * @return \QuantumCA\Sdk\Scheme\CertificateDetailScheme
-     *
-     * @link https://www.digital-sign.com.cn/api/cert-issue
      */
     public function certificateCreate(CertificateCreateRequest $certificateCreateRequest)
     {
@@ -32,8 +30,6 @@ class Order extends AbstractResource
       *
       * @param CertificateReissueRequest $certificateReissueRequest
       * @return \QuantumCA\Sdk\Scheme\CertificateDetailScheme
-      *
-      * @link https://www.digital-sign.com.cn/api/cert-reissue
       */
      public function certificateReissue(CertificateReissueRequest $certificateReissueRequest)
      {
@@ -45,8 +41,6 @@ class Order extends AbstractResource
      *
      * @param CertificateDetailRequest $certificateDetailRequest
      * @return \QuantumCA\Sdk\Scheme\CertificateDetailScheme
-     *
-     * @link https://www.digital-sign.com.cn/api/cert-detail
      */
     public function certificateDetail(CertificateDetailRequest $certificateDetailRequest)
     {
@@ -58,8 +52,6 @@ class Order extends AbstractResource
      *
      * @param CertificateUpdateDcvRequest $certificateUpdateDcvRequest
      * @return \QuantumCA\Sdk\Scheme\Certificate\DnsDCV[]|\QuantumCA\Sdk\Scheme\Certificate\EmailDCV[]|\QuantumCA\Sdk\Scheme\Certificate\HttpDCV[]|\QuantumCA\Sdk\Scheme\Certificate\HttpsDCV[]
-     *
-     * @link https://www.digital-sign.com.cn/api/cert-update-dcv
      */
     public function certificateUpdateDcv(CertificateUpdateDcvRequest $certificateUpdateDcvRequest)
     {
@@ -71,8 +63,6 @@ class Order extends AbstractResource
      *
      * @param CertificateValidateDcvRequest $certificateValidateDcvRequest
      * @return \QuantumCA\Sdk\Scheme\CertificateDetailScheme
-     *
-     * @link https://www.digital-sign.com.cn/api/cert-validate-dcv
      */
     public function certificateValidateDcv(CertificateValidateDcvRequest $certificateValidateDcvRequest)
     {
@@ -84,8 +74,6 @@ class Order extends AbstractResource
      *
      * @param CertificateAddSanRequest $certificateAddSanRequest
      * @return \QuantumCA\Sdk\Scheme\CertificateAddSanScheme
-     *
-     * @link https://www.digital-sign.com.cn/api/cert-add-san
      */
     public function certificateAddSan(CertificateAddSanRequest $certificateAddSanRequest)
     {
@@ -97,8 +85,6 @@ class Order extends AbstractResource
      *
      * @param CertificateRemoveSanRequest $certificateRemoveSanRequest
      * @return \QuantumCA\Sdk\Scheme\CertificateRefundScheme
-     *
-     * @link https://www.digital-sign.com.cn/api/cert-refund
      */
     public function certificateRemoveSan(CertificateRemoveSanRequest $certificateRemoveSanRequest)
     {
@@ -110,8 +96,6 @@ class Order extends AbstractResource
      *
      * @param CertificateRefundRequest $certificateRefundRequest
      * @return \QuantumCA\Sdk\Scheme\CertificateRefundScheme
-     *
-     * @link https://www.digital-sign.com.cn/api/cert-refund
      */
     public function certificateRefund(CertificateRefundRequest $certificateRefundRequest)
     {
