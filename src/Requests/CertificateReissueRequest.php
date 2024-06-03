@@ -5,6 +5,7 @@ namespace QuantumCA\Sdk\Requests;
 /**
  * 重签证书请求
  *
+ * @property string $unique_id 必传,每次签名请求的唯一ID
  * @property string $service_id 必传,下单时返回的id
  * @property string[] $domain_dcv 必传
  * @property string $csr 必传,客户上传的CSR
