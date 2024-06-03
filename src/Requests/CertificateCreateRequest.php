@@ -5,7 +5,7 @@ namespace QuantumCA\Sdk\Requests;
 /**
  * 购买证书请求
  *
- * @property string $unique_id 必传,合作伙伴系统的证书id
+ * @property string $unique_id 必传,每次签名请求的唯一ID
  * @property integer $product_id 必传, /product/list 接口返回的 id
  * @property string $period 必传,时长,可选Quarterly,Annually,Biennially
  * @property string[] $domain_dcv 必传
