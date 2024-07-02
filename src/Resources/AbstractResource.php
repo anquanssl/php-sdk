@@ -4,6 +4,7 @@ namespace QuantumCA\Sdk\Resources;
 
 use QuantumCA\Sdk\Client;
 
+#[\AllowDynamicProperties]
 abstract class AbstractResource
 {
     /**
