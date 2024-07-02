@@ -3,31 +3,34 @@
 namespace QuantumCA\Sdk\Requests;
 
 use ArrayAccess;
-use ArrayObject;
 
+#[\AllowDynamicProperties]
 abstract class AbstractRequest implements ArrayAccess
 {
-    public function offsetExists($offset)
+    #[\ReturnTypeWillChange]
+    public function offsetExists($offset): bool
     {
         return isset($this->{$offset});
     }
 
-    public function offsetGet($offset)
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset): mixed
     {
         return $this->{$offset};
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->{$offset} = $value;
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->{$offset});
     }
     
-    public function toArray()
+    #[\ReturnTypeWillChange]
+    public function toArray(): array
     {
         return (array) $this;
     }
