@@ -105,9 +105,6 @@ class Client
             $parameters = isset($arguments[1]) ? $arguments[1] : [];
             $parameters = $this->sign($resource, $parameters, $this->accessKeyId, $this->accessKeySecret);
 
-            if (function_exists('logger')) {
-                logger()->debug('ssl_client_request', (array) $parameters);
-            }
             $response = $http->{$method}($uri, [
                 ($method == 'get' ? RequestOptions::QUERY : RequestOptions::JSON) => $parameters,
             ]);
@@ -127,9 +124,6 @@ class Client
             }
             return $json->data;
         } catch (ClientException $e) {
-            if (function_exists('logger')) {
-                logger()->debug('ssl_client_error_response', json_decode($e->getResponse()->getBody()->__toString(), true));
-            }
             // 若不存在 Laravel's ValidationException 类，或者版本太低没有 withMessages 方法，抛出Guzzle的异常
             if (!class_exists(ValidationException::class) || !method_exists(ValidationException::class, 'withMessages')) {
                 throw $e;
@@ -141,9 +135,6 @@ class Client
             }
 
             $data = json_decode($response->getBody()->__toString(), true);;
-            if (function_exists('logger')) {
-                logger()->debug('ssl_client_error_validation_exception', $data);
-            }
 
             if (JSON_ERROR_NONE !== json_last_error() || !isset($data['message'])) {
                 throw new ClientException('JSON DECODE ERROR', $e->getRequest(), $e->getResponse(), $e);
