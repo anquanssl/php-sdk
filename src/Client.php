@@ -2,6 +2,7 @@
 
 namespace QuantumCA\Sdk;
 
+use Exception;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
@@ -110,7 +111,7 @@ class Client
                 if (isset($map[$response->json('message')])) {
                     $exception_class = $map[$response->json('message')];
                 }
-                throw new $exception_class(!!$response->json('message') ? $response->json('message') : '请求接口出错', !!$response->json('message') ? $response->json('message') : -1);
+                throw new $exception_class(!!$response->json('message') ? $response->json('message') : '请求接口出错', $response->json('code') != null ? $response->json('code') : -1);
             }
 
             $json = $response->object();
@@ -126,7 +127,7 @@ class Client
              * @var \GuzzleHttp\Psr7\Response $response
              */
             $response = $http->{$method}($uri, [
-                ($method == 'get' ? RequestOptions::QUERY : RequestOptions::JSON) => array_merge($query, $body),
+                ($method == 'get' ? RequestOptions::QUERY : RequestOptions::JSON) => $data,
             ]);
 
             $json = json_decode($response->getBody()->__toString());
@@ -140,7 +141,7 @@ class Client
                 if (isset($map[$json->message])) {
                     $exception_class = $map[$json->message];
                 }
-                throw new $exception_class(isset($json->message) ? $json->message : '请求接口出错', isset($json->message) ? $json->message : -1);
+                throw new $exception_class(isset($json->message) ? $json->message : '请求接口出错', isset($json->code) ? $json->code : -1);
             }
             return $json->data;
         }
