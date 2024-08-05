@@ -101,8 +101,7 @@ class Client
                 ->timeout($this->connectTimeout)
                 ->asJson()
                 ->{$method}($uri, $data);
-            if (!$response->successful()) {
-            } else if (!$response->json('success')) {
+            if (!$response->successful() || !$response->json('success')) {
                 $exception_class = RequestException::class;
                 $map = static::CODE_EXCEPTION_MAP;
                 if (!$response->json('message')) {
