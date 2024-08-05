@@ -5,6 +5,7 @@ namespace QuantumCA\Sdk;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\ValidationException;
 use QuantumCA\Sdk\Exceptions\DoNotHavePrivilegeException;
 use QuantumCA\Sdk\Exceptions\InsufficientBalanceException;
@@ -82,6 +83,71 @@ class Client
     }
 
     /**
+     * @param string|'post'|'get' $method
+     * @param string $uri
+     * @param array $query
+     * @param array $body
+     * 
+     * @return mixed
+     */
+    protected function _http($method, $uri, $query, $body)
+    {
+        if (class_exists(Http::class)) {
+            /**
+             * @var \Illuminate\Http\Client\Response $response
+             */
+            $response = Http::withoutVerifying()
+                ->withoutRedirecting()
+                ->timeout($this->connectTimeout)
+                ->asJson()
+                ->{$method}($uri . '?' . http_build_query($query), $body);
+            if (!$response->successful()) {
+            } else if (!$response->json('success')) {
+                $exception_class = RequestException::class;
+                $map = static::CODE_EXCEPTION_MAP;
+                if (!$response->json('message')) {
+                    throw new RequestException('未知错误', -1);
+                }
+                if (isset($map[$response->json('message')])) {
+                    $exception_class = $map[$response->json('message')];
+                }
+                throw new $exception_class(!!$response->json('message') ? $response->json('message') : '请求接口出错', !!$response->json('message') ? $response->json('message') : -1);
+            }
+
+            $json = $response->object();
+            return $json->data;
+        } else {
+            $http = new GuzzleHttpClient([
+                RequestOptions::CONNECT_TIMEOUT => $this->connectTimeout,
+                RequestOptions::READ_TIMEOUT => $this->readTimeout,
+                RequestOptions::VERIFY => false,
+                RequestOptions::ALLOW_REDIRECTS => false,
+            ]);
+            /**
+             * @var \GuzzleHttp\Psr7\Response $response
+             */
+            $response = $http->{$method}($uri, [
+                ($method == 'get' ? RequestOptions::QUERY : RequestOptions::JSON) => array_merge($query, $body),
+            ]);
+
+            $json = json_decode($response->getBody()->__toString());
+
+            if (!isset($json->success) || !$json->success) {
+                $exception_class = RequestException::class;
+                $map = static::CODE_EXCEPTION_MAP;
+                if (!isset($json->message)) {
+                    throw new RequestException('未知错误', -1);
+                }
+                if (isset($map[$json->message])) {
+                    $exception_class = $map[$json->message];
+                }
+                throw new $exception_class(isset($json->message) ? $json->message : '请求接口出错', isset($json->message) ? $json->message : -1);
+            }
+            return $json->data;
+        }
+    }
+
+    /**
      * 魔术
      *
      * @param string $method GET、POST
@@ -105,24 +171,7 @@ class Client
             $parameters = isset($arguments[1]) ? $arguments[1] : [];
             $parameters = $this->sign($resource, $parameters, $this->accessKeyId, $this->accessKeySecret);
 
-            $response = $http->{$method}($uri, [
-                ($method == 'get' ? RequestOptions::QUERY : RequestOptions::JSON) => $parameters,
-            ]);
-
-            $json = json_decode($response->getBody()->__toString());
-
-            if (!isset($json->success) || !$json->success) {
-                $exception_class = RequestException::class;
-                $map = static::CODE_EXCEPTION_MAP;
-                if (!isset($json->error_code)) {
-                    throw new RequestException('未知错误', -1);
-                }
-                if (isset($map[$json->error_code])) {
-                    $exception_class = $map[$json->error_code];
-                }
-                throw new $exception_class(isset($json->message) ? $json->message : '请求接口出错', isset($json->error_code) ? $json->error_code : -1);
-            }
-            return $json->data;
+            return $this->_http(strtolower($method), $uri, strtolower($method) === 'get' ? $parameters : [], strtolower($method) === 'get' ? [] : $parameters);
         } catch (ClientException $e) {
             // 若不存在 Laravel's ValidationException 类，或者版本太低没有 withMessages 方法，抛出Guzzle的异常
             if (!class_exists(ValidationException::class) || !method_exists(ValidationException::class, 'withMessages')) {
