@@ -90,7 +90,7 @@ class Client
      * 
      * @return mixed
      */
-    protected function _http($method, $uri, $query, $body)
+    protected function _http($method, $uri, $data)
     {
         if (class_exists(Http::class)) {
             /**
@@ -100,7 +100,7 @@ class Client
                 ->withoutRedirecting()
                 ->timeout($this->connectTimeout)
                 ->asJson()
-                ->{$method}($uri . '?' . http_build_query($query), $body);
+                ->{$method}($uri, $data);
             if (!$response->successful()) {
             } else if (!$response->json('success')) {
                 $exception_class = RequestException::class;
@@ -171,7 +171,7 @@ class Client
             $parameters = isset($arguments[1]) ? $arguments[1] : [];
             $parameters = $this->sign($resource, $parameters, $this->accessKeyId, $this->accessKeySecret);
 
-            return $this->_http(strtolower($method), $uri, strtolower($method) === 'get' ? $parameters : [], strtolower($method) === 'get' ? [] : $parameters);
+            return $this->_http(strtolower($method), $uri, $parameters);
         } catch (ClientException $e) {
             // 若不存在 Laravel's ValidationException 类，或者版本太低没有 withMessages 方法，抛出Guzzle的异常
             if (!class_exists(ValidationException::class) || !method_exists(ValidationException::class, 'withMessages')) {
