@@ -7,7 +7,6 @@ use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Validation\ValidationException;
 use QuantumCA\Sdk\Exceptions\DoNotHavePrivilegeException;
 use QuantumCA\Sdk\Exceptions\InsufficientBalanceException;
 use QuantumCA\Sdk\Exceptions\RequestException;
@@ -172,24 +171,6 @@ class Client
             $parameters = $this->sign($resource, $parameters, $this->accessKeyId, $this->accessKeySecret);
 
             return $this->_http(strtolower($method), $uri, $parameters);
-        } catch (ClientException $e) {
-            // 若不存在 Laravel's ValidationException 类，或者版本太低没有 withMessages 方法，抛出Guzzle的异常
-            if (!class_exists(ValidationException::class) || !method_exists(ValidationException::class, 'withMessages')) {
-                throw $e;
-            }
-
-            $response = $e->getResponse();
-            if ($response->getStatusCode() !== 422) {
-                throw $e;
-            }
-
-            $data = json_decode($response->getBody()->__toString(), true);;
-
-            if (JSON_ERROR_NONE !== json_last_error() || !isset($data['message'])) {
-                throw new ClientException('JSON DECODE ERROR', $e->getRequest(), $e->getResponse(), $e);
-            }
-
-            throw ValidationException::withMessages($data['errors']);
         }
     }
 }
