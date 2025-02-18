@@ -1,4 +1,5 @@
 <?php
+
 namespace QuantumCA\Sdk\Exceptions;
 
 use Exception;
