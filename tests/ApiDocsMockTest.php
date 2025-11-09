@@ -317,7 +317,7 @@ final class ApiDocsMockTest extends TestCase
         $normalPricing = $first['pricing']['normal'];
         $this->assertIsArray($normalPricing);
         if (!empty($normalPricing)) {
-            $firstPeriod = array_key_first($normalPricing);
+            $firstPeriod = key(array_slice($normalPricing, 0, 1));
             $this->assertIsString($firstPeriod);
             $this->assertTrue(is_numeric($normalPricing[$firstPeriod]));
         }
