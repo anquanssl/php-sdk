@@ -44,6 +44,25 @@ $result = $sdk->product->productList();
 print($result->products);
 ```
 
+## 快速开始
+
+- 设置环境变量：
+  - `ACCESS_KEY_ID`、`ACCESS_KEY_SECRET`：在控制台获取的秘钥对。
+  - 可选 `API_ORIGIN`：API 地址，默认使用 SDK 内置地址。
+  - 部分示例需要 `SERVICE_ID`：某个订单的编号。
+- 执行示例脚本：
+  - 列出产品与价格：`php examples/01_product_list.php`
+  - 下单购买证书：`php examples/02_certificate_create.php`
+  - 查询订单详情：`php examples/03_order_detail.php`
+  - 更新域名 DCV：`php examples/04_update_dcv.php`
+  - 提交检查 DCV：`php examples/05_validate_dcv.php`
+  - 重签证书：`php examples/06_reissue_certificate.php`
+  - 添加 SAN：`php examples/07_add_san.php`
+  - 移除无法验证的域名：`php examples/08_remove_san.php`
+  - 订单退款：`php examples/09_refund.php`
+
+以上示例统一通过 `examples/bootstrap.php` 初始化客户端，示例内已包含最小参数与错误处理，便于对接和调试。
+
 ## 智能感知
 
 我们的 SDK 将智能感知 Intellisense (VS Code、PHPStorm) 做为目标之一.
