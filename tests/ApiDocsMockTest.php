@@ -20,12 +20,12 @@ use Psr\Http\Message\RequestInterface;
 
 final class ApiDocsMockTest extends TestCase
 {
-    private function assertIsArray($value)
+    private function assertIsArrayCompat($value)
     {
-        if (method_exists(TestCase::class, 'assertIsArray')) {
-            self::assertIsArray($value);
+        if (method_exists($this, 'assertIsArray')) {
+            $this->assertIsArray($value);
         } else {
-            self::assertInternalType('array', $value);
+            $this->assertInternalType('array', $value);
         }
     }
 
@@ -313,7 +313,7 @@ final class ApiDocsMockTest extends TestCase
         $result = json_decode(json_encode($result), true);
 
         $this->assertArrayHasKey('products', $result);
-        $this->assertIsArray($result['products']);
+        $this->assertIsArrayCompat($result['products']);
         $first = $result['products'][0];
         $this->assertArrayHasKey('id', $first);
         $this->assertArrayHasKey('name', $first);
@@ -324,7 +324,7 @@ final class ApiDocsMockTest extends TestCase
         $this->assertArrayHasKey('ipv6', $first['pricing']);
 
         $normalPricing = $first['pricing']['normal'];
-        $this->assertIsArray($normalPricing);
+        $this->assertIsArrayCompat($normalPricing);
         if (!empty($normalPricing)) {
             $firstPeriod = key(array_slice($normalPricing, 0, 1));
             $this->assertIsString($firstPeriod);
@@ -348,7 +348,7 @@ final class ApiDocsMockTest extends TestCase
         $this->assertArrayHasKey('service_id', $detail);
         $this->assertArrayHasKey('status', $detail);
         $this->assertArrayHasKey('dcv', $detail);
-        $this->assertIsArray($detail['dcv']);
+        $this->assertIsArrayCompat($detail['dcv']);
         $this->assertArrayHasKey('type', $detail['dcv'][0]);
     }
 
