@@ -25,9 +25,7 @@
     "minimum-stability": "stable",
     "require-dev": {
         "phpunit/phpunit": ">=5.0",
-        "illuminate/support": "^8.51",
-        "illuminate/validation": "^8.51",
-        "illuminate/http": "^8.51"
+        "illuminate/support": ">=8.51"
     },
     "suggest": {
         "illuminate/http": "Using for better interactives"
