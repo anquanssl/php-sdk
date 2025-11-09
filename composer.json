@@ -8,6 +8,11 @@
             "email": "phpsdk@quantumca.com.cn"
         }
     ],
+    "config": {
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
+    },
     "require": {
         "guzzlehttp/guzzle": ">4.0"
     },
