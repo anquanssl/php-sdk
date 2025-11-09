@@ -20,6 +20,15 @@ use Psr\Http\Message\RequestInterface;
 
 final class ApiDocsMockTest extends TestCase
 {
+    private function assertIsArray($value)
+    {
+        if (method_exists(TestCase::class, 'assertIsArray')) {
+            self::assertIsArray($value);
+        } else {
+            self::assertInternalType('array', $value);
+        }
+    }
+
     private function makeMockedClientWithRouter(callable $router)
     {
         $mock = new MockHandler([
