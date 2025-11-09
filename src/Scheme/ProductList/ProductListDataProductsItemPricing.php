@@ -2,10 +2,14 @@
 
 namespace QuantumCA\Sdk\Scheme\ProductList;
 
+use QuantumCA\Sdk\Scheme\AbstractScheme;
+
 /**
- * @property ProductListDataProductsItemPriceItem $periods_price
- * @property ProductListDataProductsItemPriceItem[]|ProductListDataProductsItemPriceSanPrice $san_price
+ * @property ProductListDataProductsItemPriceItem $normal
+ * @property ProductListDataProductsItemPriceItem $wildcard
+ * @property ProductListDataProductsItemPriceItem $ip
+ * @property ProductListDataProductsItemPriceItem $ipv6
  */
-class ProductListDataProductsItemPricing
+class ProductListDataProductsItemPricing extends AbstractScheme
 {
 }

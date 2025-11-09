@@ -8,6 +8,6 @@ namespace QuantumCA\Sdk\Scheme;
  * @property integer $service_id 我司证书编号
  * @property string $status refunded
  */
-class CertificateRefundScheme
+class CertificateRefundScheme extends AbstractScheme
 {
 }

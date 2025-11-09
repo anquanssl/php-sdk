@@ -2,6 +2,8 @@
 
 namespace QuantumCA\Sdk\Scheme\Certificate;
 
+use QuantumCA\Sdk\Scheme\AbstractScheme;
+
 /**
  * @property string $filename
  * @property string $filecontent
@@ -9,5 +11,5 @@ namespace QuantumCA\Sdk\Scheme\Certificate;
  * @property string $filefullpath
  * @property string $url
  */
-class HttpDCVDetail
+class HttpDCVDetail extends AbstractScheme
 { }

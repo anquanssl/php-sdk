@@ -7,7 +7,6 @@ use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Validation\ValidationException;
 use QuantumCA\Sdk\Exceptions\DoNotHavePrivilegeException;
 use QuantumCA\Sdk\Exceptions\InsufficientBalanceException;
 use QuantumCA\Sdk\Exceptions\RequestException;
@@ -66,6 +65,11 @@ class Client
      */
     protected $readTimeout;
 
+    /**
+     * @var \GuzzleHttp\Client|null 可注入的HTTP客户端（用于测试/Mock）
+     */
+    protected $httpClient = null;
+
     public function __construct($accessKeyId, $accessKeySecret, $apiOrigin = null, $connectTimeout = 5, $readTimeout = 15)
     {
         if ($apiOrigin === null) {
@@ -93,6 +97,31 @@ class Client
      */
     protected function _http($method, $uri, $data)
     {
+        // 若已注入自定义 HTTP 客户端，则优先使用（便于Mock/测试拦截）
+        if ($this->httpClient instanceof GuzzleHttpClient) {
+            /**
+             * @var \GuzzleHttp\Psr7\Response $response
+             */
+            $response = $this->httpClient->{$method}($uri, [
+                ($method == 'get' ? RequestOptions::QUERY : RequestOptions::JSON) => $data,
+            ]);
+
+            $json = json_decode($response->getBody()->__toString());
+
+            if (!isset($json->success) || !$json->success) {
+                $exception_class = RequestException::class;
+                $map = static::CODE_EXCEPTION_MAP;
+                if (!isset($json->message)) {
+                    throw new RequestException('未知错误', -1);
+                }
+                if (isset($map[$json->message])) {
+                    $exception_class = $map[$json->message];
+                }
+                throw new $exception_class(isset($json->message) ? $json->message : '请求接口出错', isset($json->code) ? $json->code : -1);
+            }
+            return $json->data;
+        }
+
         if (class_exists(Http::class)) {
             /**
              * @var \Illuminate\Http\Client\Response $response
@@ -157,11 +186,7 @@ class Client
     public function __call($method, $arguments = [])
     {
         try {
-            $http = new GuzzleHttpClient([
-                RequestOptions::CONNECT_TIMEOUT => $this->connectTimeout,
-                RequestOptions::READ_TIMEOUT => $this->readTimeout,
-                RequestOptions::VERIFY => false,
-            ]);
+            // 保持原有容错逻辑，此处无需初始化HTTP客户端
 
             $api = $arguments[0];
             $resource = '/' . $api;
@@ -173,8 +198,9 @@ class Client
 
             return $this->_http(strtolower($method), $uri, $parameters);
         } catch (ClientException $e) {
-            // 若不存在 Laravel's ValidationException 类，或者版本太低没有 withMessages 方法，抛出Guzzle的异常
-            if (!class_exists(ValidationException::class) || !method_exists(ValidationException::class, 'withMessages')) {
+            // 若不存在 Laravel 的 ValidationException 类，或者版本太低没有 withMessages 方法，抛出 Guzzle 的异常
+            $validationExceptionClass = '\\Illuminate\\Validation\\ValidationException';
+            if (!class_exists($validationExceptionClass) || !method_exists($validationExceptionClass, 'withMessages')) {
                 throw $e;
             }
 
@@ -189,7 +215,19 @@ class Client
                 throw new ClientException('JSON DECODE ERROR', $e->getRequest(), $e->getResponse(), $e);
             }
 
-            throw ValidationException::withMessages($data['errors']);
+            throw $validationExceptionClass::withMessages($data['errors']);
         }
+    }
+
+    /**
+     * 注入自定义HTTP客户端（如 Guzzle 的 MockHandler）
+     *
+     * @param \GuzzleHttp\Client $client
+     * @return $this
+     */
+    public function setHttpClient(GuzzleHttpClient $client)
+    {
+        $this->httpClient = $client;
+        return $this;
     }
 }

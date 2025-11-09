@@ -7,5 +7,5 @@ namespace QuantumCA\Sdk\Scheme;
  *
  * @property float $cost 本次添加SAN的成本
  */
-class CertificateAddSanScheme
+class CertificateAddSanScheme extends AbstractScheme
 { }

@@ -25,7 +25,8 @@ namespace QuantumCA\Sdk\Requests;
  * @property string $contact_title OV/EV必传,联系人职位
  * @property string $contact_phone OV/EV必传,联系人电话
  * @property string $contact_email 必传,联系人邮箱
- * @property string $notify_url 必传,证书颁发后的通知地址
+ * @property string $notify_url 可选,证书颁发后的通知地址
+ * @property integer $subscriber_identifier 可选,订阅者标识
  */
 class CertificateCreateRequest extends AbstractRequest
 {

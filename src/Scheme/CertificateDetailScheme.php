@@ -15,6 +15,6 @@ namespace QuantumCA\Sdk\Scheme;
  * @property string $issuer_cert 签发者证书
  * @property 'weekly'|'monthly'|'quarterly'|'semi-annually'|'annually'|'annually.bonus'|'biennially'|'triennially'|'quadrennially'|'quinquennially' $period
  */
-class CertificateDetailScheme
+class CertificateDetailScheme extends AbstractScheme
 {
 }
