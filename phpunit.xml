@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="vendor/autoload.php">
     <testsuites>
-        <testsuite name="default">
+        <testsuite name="all">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src</directory>
-        </whitelist>
-    </filter>
+    <php>
+        <server name="ACCESS_KEY_ID" value="test_access_key_id"/>
+        <server name="ACCESS_KEY_SECRET" value="test_access_key_secret"/>
+        <server name="API_ORIGIN" value="https://example.com"/>
+        <server name="SERVICE_ID" value="test_service_id"/>
+    </php>
 </phpunit>

@@ -49,7 +49,7 @@ final class ApiDocsMockTest extends TestCase
         return $client;
     }
 
-    private function buildDnsDcv(string $subdomain, string $tld)
+    private function buildDnsDcv($subdomain, $tld)
     {
         return [
             'type' => 'dns',
@@ -65,7 +65,7 @@ final class ApiDocsMockTest extends TestCase
         ];
     }
 
-    private function buildHttpDcv(string $subdomain, string $tld, bool $https = false)
+    private function buildHttpDcv($subdomain, $tld, $https = false)
     {
         $scheme = $https ? 'https' : 'http';
         return [
@@ -83,7 +83,7 @@ final class ApiDocsMockTest extends TestCase
         ];
     }
 
-    private function buildEmailDcv(string $subdomain, string $tld)
+    private function buildEmailDcv($subdomain, $tld)
     {
         $domain = $subdomain . '.' . $tld;
         return [

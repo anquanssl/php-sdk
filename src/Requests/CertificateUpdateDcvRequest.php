@@ -10,4 +10,6 @@ namespace QuantumCA\Sdk\Requests;
  */
 class CertificateUpdateDcvRequest extends AbstractRequest
 {
+    public $service_id;
+    public $domain_dcv;
 }

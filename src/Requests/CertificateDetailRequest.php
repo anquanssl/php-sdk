@@ -9,4 +9,5 @@ namespace QuantumCA\Sdk\Requests;
  */
 class CertificateDetailRequest extends AbstractRequest
 {
+    public $service_id;
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use QuantumCA\Sdk\Client;
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -9,11 +7,11 @@ require __DIR__ . '/../vendor/autoload.php';
 /**
  * 初始化 SDK 客户端
  */
-function sdk(): Client
+function sdk()
 {
-    $accessKeyId = getenv('ACCESS_KEY_ID') ?: ($_SERVER['ACCESS_KEY_ID'] ?? '');
-    $accessKeySecret = getenv('ACCESS_KEY_SECRET') ?: ($_SERVER['ACCESS_KEY_SECRET'] ?? '');
-    $apiOrigin = getenv('API_ORIGIN') ?: ($_SERVER['API_ORIGIN'] ?? null);
+    $accessKeyId = getenv('ACCESS_KEY_ID') ?: (isset($_SERVER['ACCESS_KEY_ID']) ? $_SERVER['ACCESS_KEY_ID'] : '');
+    $accessKeySecret = getenv('ACCESS_KEY_SECRET') ?: (isset($_SERVER['ACCESS_KEY_SECRET']) ? $_SERVER['ACCESS_KEY_SECRET'] : '');
+    $apiOrigin = getenv('API_ORIGIN') ?: (isset($_SERVER['API_ORIGIN']) ? $_SERVER['API_ORIGIN'] : null);
 
     if (!$accessKeyId || !$accessKeySecret) {
         fwrite(STDERR, "请在环境变量中设置 ACCESS_KEY_ID 与 ACCESS_KEY_SECRET\n");
@@ -25,7 +23,7 @@ function sdk(): Client
 /**
  * 示例 CSR（仅演示用途）
  */
-function exampleCsr(): string
+function exampleCsr()
 {
     return '-----BEGIN CERTIFICATE REQUEST-----' . PHP_EOL .
         'MIICuzCCAaMCAQAwSTELMAkGA1UEBhMCVVMxETAPBgNVBAgTCFByb3ZpbmNlMQ0w' . PHP_EOL .
@@ -49,7 +47,7 @@ function exampleCsr(): string
 /**
  * 简单打印工具
  */
-function println(mixed $data): void
+function println($data)
 {
     if (is_object($data) || is_array($data)) {
         echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL;

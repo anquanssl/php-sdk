@@ -4,7 +4,6 @@ namespace QuantumCA\Sdk\Resources;
 
 use QuantumCA\Sdk\Client;
 
-#[\AllowDynamicProperties]
 abstract class AbstractResource
 {
     /**
@@ -12,7 +11,7 @@ abstract class AbstractResource
      */
     protected $client = null;
 
-    public function __construct(Client $client)
+    public function __construct($client)
     {
         $this->client = $client;
     }

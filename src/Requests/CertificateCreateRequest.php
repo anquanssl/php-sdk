@@ -30,4 +30,26 @@ namespace QuantumCA\Sdk\Requests;
  */
 class CertificateCreateRequest extends AbstractRequest
 {
+    public $unique_id;
+    public $product_id;
+    public $period;
+    public $domain_dcv;
+    public $csr;
+    public $renew;
+    public $organization;
+    public $organization_unit;
+    public $registered_address_line1;
+    public $serial_no;
+    public $country;
+    public $state;
+    public $city;
+    public $postal_code;
+    public $organization_phone;
+    public $date_of_incorporation;
+    public $contact_name;
+    public $contact_title;
+    public $contact_phone;
+    public $contact_email;
+    public $notify_url;
+    public $subscriber_identifier;
 }

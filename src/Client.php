@@ -183,8 +183,12 @@ class Client
      * @param array $arguments 第一个参数为API的路径，第二个参数为业务参数
      * @return \QuantumCA\Sdk\Response\Interfaces\BaseResponse
      */
-    public function __call($method, $arguments = [])
+    public function __call($method, $arguments = null)
     {
+        if ($arguments === null) {
+            $arguments = [];
+        }
+
         try {
             // 保持原有容错逻辑，此处无需初始化HTTP客户端
 
@@ -225,7 +229,7 @@ class Client
      * @param \GuzzleHttp\Client $client
      * @return $this
      */
-    public function setHttpClient(GuzzleHttpClient $client)
+    public function setHttpClient($client)
     {
         $this->httpClient = $client;
         return $this;

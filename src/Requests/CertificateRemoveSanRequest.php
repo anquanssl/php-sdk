@@ -10,4 +10,5 @@ namespace QuantumCA\Sdk\Requests;
  */
 class CertificateRemoveSanRequest extends AbstractRequest
 {
+    public $domain;
 }

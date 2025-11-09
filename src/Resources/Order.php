@@ -19,7 +19,7 @@ class Order extends AbstractResource
      * @param CertificateCreateRequest $certificateCreateRequest
      * @return \QuantumCA\Sdk\Scheme\CertificateDetailScheme
      */
-    public function certificateCreate(CertificateCreateRequest $certificateCreateRequest)
+    public function certificateCreate($certificateCreateRequest)
     {
         return $this->client->post('certificate/create', $certificateCreateRequest->toArray());
     }
@@ -31,7 +31,7 @@ class Order extends AbstractResource
       * @param CertificateReissueRequest $certificateReissueRequest
       * @return \QuantumCA\Sdk\Scheme\CertificateDetailScheme
       */
-     public function certificateReissue(CertificateReissueRequest $certificateReissueRequest)
+     public function certificateReissue($certificateReissueRequest)
      {
          return $this->client->post('certificate/reissue', $certificateReissueRequest->toArray());
     }
@@ -42,7 +42,7 @@ class Order extends AbstractResource
      * @param CertificateDetailRequest $certificateDetailRequest
      * @return \QuantumCA\Sdk\Scheme\CertificateDetailScheme
      */
-    public function certificateDetail(CertificateDetailRequest $certificateDetailRequest)
+    public function certificateDetail($certificateDetailRequest)
     {
         return $this->client->get('certificate/detail', $certificateDetailRequest->toArray());
     }
@@ -53,7 +53,7 @@ class Order extends AbstractResource
      * @param CertificateUpdateDcvRequest $certificateUpdateDcvRequest
      * @return \QuantumCA\Sdk\Scheme\Certificate\DnsDCV[]|\QuantumCA\Sdk\Scheme\Certificate\EmailDCV[]|\QuantumCA\Sdk\Scheme\Certificate\HttpDCV[]|\QuantumCA\Sdk\Scheme\Certificate\HttpsDCV[]
      */
-    public function certificateUpdateDcv(CertificateUpdateDcvRequest $certificateUpdateDcvRequest)
+    public function certificateUpdateDcv($certificateUpdateDcvRequest)
     {
         return $this->client->post('certificate/update-dcv', $certificateUpdateDcvRequest->toArray());
     }
@@ -64,7 +64,7 @@ class Order extends AbstractResource
      * @param CertificateValidateDcvRequest $certificateValidateDcvRequest
      * @return \QuantumCA\Sdk\Scheme\CertificateDetailScheme
      */
-    public function certificateValidateDcv(CertificateValidateDcvRequest $certificateValidateDcvRequest)
+    public function certificateValidateDcv($certificateValidateDcvRequest)
     {
         return $this->client->post('certificate/validate-dcv', $certificateValidateDcvRequest->toArray());
     }
@@ -75,7 +75,7 @@ class Order extends AbstractResource
      * @param CertificateAddSanRequest $certificateAddSanRequest
      * @return \QuantumCA\Sdk\Scheme\CertificateAddSanScheme
      */
-    public function certificateAddSan(CertificateAddSanRequest $certificateAddSanRequest)
+    public function certificateAddSan($certificateAddSanRequest)
     {
         return $this->client->post('certificate/add-san', $certificateAddSanRequest->toArray());
     }
@@ -86,7 +86,7 @@ class Order extends AbstractResource
      * @param CertificateRemoveSanRequest $certificateRemoveSanRequest
      * @return \QuantumCA\Sdk\Scheme\CertificateRefundScheme
      */
-    public function certificateRemoveSan(CertificateRemoveSanRequest $certificateRemoveSanRequest)
+    public function certificateRemoveSan($certificateRemoveSanRequest)
     {
         return $this->client->post('certificate/remove-san', $certificateRemoveSanRequest->toArray());
     }
@@ -97,7 +97,7 @@ class Order extends AbstractResource
      * @param CertificateRefundRequest $certificateRefundRequest
      * @return \QuantumCA\Sdk\Scheme\CertificateRefundScheme
      */
-    public function certificateRefund(CertificateRefundRequest $certificateRefundRequest)
+    public function certificateRefund($certificateRefundRequest)
     {
         return $this->client->post('certificate/refund', $certificateRefundRequest->toArray());
     }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use QuantumCA\Sdk\Requests\CertificateCreateRequest;
 
 require __DIR__ . '/bootstrap.php';
@@ -23,6 +21,6 @@ $req->notify_url = 'https://partner.app/notify';
 try {
     $result = $sdk->order->certificateCreate($req);
     println($result);
-} catch (Throwable $e) {
+} catch (Exception $e) {
     fwrite(STDERR, '下单失败: ' . $e->getMessage() . PHP_EOL);
 }

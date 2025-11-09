@@ -14,7 +14,7 @@ use Psr\Http\Message\RequestInterface;
 
 final class MockTransportTest extends TestCase
 {
-    private function makeMockedClient(MockHandler $mock): Client
+    private function makeMockedClient($mock)
     {
         $stack = HandlerStack::create($mock);
         $history = [];
@@ -44,7 +44,7 @@ final class MockTransportTest extends TestCase
         $result = $sdk->product->productList();
         // 兼容返回为对象或 Scheme 的情况，统一转换为数组进行断言
         $result = is_array($result) ? $result : json_decode(json_encode($result), true);
-        $this->assertIsArray($result);
+        $this->assertTrue(is_array($result));
         $this->assertArrayHasKey('accessKeyId', $result);
         $this->assertArrayHasKey('nonce', $result);
         $this->assertArrayHasKey('timestamp', $result);
