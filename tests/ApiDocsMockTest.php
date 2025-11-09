@@ -327,7 +327,11 @@ final class ApiDocsMockTest extends TestCase
         $this->assertIsArrayCompat($normalPricing);
         if (!empty($normalPricing)) {
             $firstPeriod = key(array_slice($normalPricing, 0, 1));
-            $this->assertIsString($firstPeriod);
+            if (method_exists($this, 'assertIsString')) {
+                $this->assertIsString($firstPeriod);
+            } else {
+                $this->assertInternalType('string', $firstPeriod);
+            }
             $this->assertTrue(is_numeric($normalPricing[$firstPeriod]));
         }
     }
