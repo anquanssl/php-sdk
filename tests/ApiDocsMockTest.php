@@ -20,7 +20,7 @@ use Psr\Http\Message\RequestInterface;
 
 final class ApiDocsMockTest extends TestCase
 {
-    private function makeMockedClientWithRouter(callable $router): Client
+    private function makeMockedClientWithRouter(callable $router)
     {
         $mock = new MockHandler([
             function (RequestInterface $request) use ($router) {
@@ -95,7 +95,7 @@ final class ApiDocsMockTest extends TestCase
         ];
     }
 
-    private function routeApi(RequestInterface $request): Response
+    private function routeApi(RequestInterface $request)
     {
         $path = $request->getUri()->getPath();
         $json = function (array $data) {
