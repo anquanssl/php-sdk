@@ -1,35 +1,33 @@
 <?php
 
-namespace QuantumCA\Sdk\Test;
+declare(strict_types=1);
 
 use QuantumCA\Sdk\Client;
-use PHPUnit\Framework\TestCase as AbstractTestCase;
 
-abstract class TestCase extends AbstractTestCase
+require __DIR__ . '/../vendor/autoload.php';
+
+/**
+ * 初始化 SDK 客户端
+ */
+function sdk(): Client
 {
-    /**
-     * 获取 SDK 实例
-     *
-     * @return \QuantumCA\Sdk\Client
-     */
-    public function sdk()
-    {
-        $access_key_id = $_SERVER['ACCESS_KEY_ID'];
-        $access_key_secret = $_SERVER['ACCESS_KEY_SECRET'];
-        $api_origin = $_SERVER['API_ORIGIN'];
+    $accessKeyId = getenv('ACCESS_KEY_ID') ?: ($_SERVER['ACCESS_KEY_ID'] ?? '');
+    $accessKeySecret = getenv('ACCESS_KEY_SECRET') ?: ($_SERVER['ACCESS_KEY_SECRET'] ?? '');
+    $apiOrigin = getenv('API_ORIGIN') ?: ($_SERVER['API_ORIGIN'] ?? null);
 
-        $sdk = new Client($access_key_id, $access_key_secret, $api_origin);
-        return $sdk;
+    if (!$accessKeyId || !$accessKeySecret) {
+        fwrite(STDERR, "请在环境变量中设置 ACCESS_KEY_ID 与 ACCESS_KEY_SECRET\n");
     }
 
-    /**
-     * 获取 CSR
-     *
-     * @return string
-     */
-    public function csr()
-    {
-        return '-----BEGIN CERTIFICATE REQUEST-----' . PHP_EOL .
+    return new Client($accessKeyId, $accessKeySecret, $apiOrigin);
+}
+
+/**
+ * 示例 CSR（仅演示用途）
+ */
+function exampleCsr(): string
+{
+    return '-----BEGIN CERTIFICATE REQUEST-----' . PHP_EOL .
         'MIICuzCCAaMCAQAwSTELMAkGA1UEBhMCVVMxETAPBgNVBAgTCFByb3ZpbmNlMQ0w' . PHP_EOL .
         'CwYDVQQHEwRDaXR5MRgwFgYDVQQDEw93d3cuZXhhbXBsZS5vcmcwggEiMA0GCSqG' . PHP_EOL .
         'SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDMak2BEAUbApEtjmuEEcpVw4Rkh8yzLdLV' . PHP_EOL .
@@ -46,5 +44,16 @@ abstract class TestCase extends AbstractTestCase
         'ozsYq+Abjj3V4bDjXFfFHS5LB2hqnJjxIuR3h7Pa7u8BJsKujTuK9BxdNY9eyIYG' . PHP_EOL .
         'gpbG5CjfVgsu+tVYCcAwg3DhcaIcqtIM6CtVRh5JTQ==' . PHP_EOL .
         '-----END CERTIFICATE REQUEST-----';
+}
+
+/**
+ * 简单打印工具
+ */
+function println(mixed $data): void
+{
+    if (is_object($data) || is_array($data)) {
+        echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL;
+    } else {
+        echo (string)$data . PHP_EOL;
     }
 }

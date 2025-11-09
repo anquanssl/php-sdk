@@ -23,7 +23,7 @@ final class CreateCertificateTest extends TestCase
         $request->notify_url = 'https://partner.app/notify';
 
         $result = $this->sdk()->order->certificateCreate($request);
-        $this->assertObjectHasAttribute('QuantumCA_id', $result);
+        $this->assertObjectHasAttribute('service_id', $result);
         $this->assertObjectHasAttribute('cost', $result);
         $this->assertObjectHasAttribute('status', $result);
         $this->assertObjectHasAttribute('dcv', $result);

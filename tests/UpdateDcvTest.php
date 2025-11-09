@@ -10,7 +10,7 @@ final class UpdateDcvTest extends TestCase
     {
         $domain = 'www.example.org';
         $request = new CertificateUpdateDcvRequest();
-        $request->QuantumCA_id = $_SERVER['QuantumCA_ORDER_ID'];
+        $request->service_id = $_SERVER['SERVICE_ID'];
         $request->domain = $domain;
         $request->type = 'email';
         $request->value = 'admin@' . $domain;

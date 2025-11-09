@@ -10,7 +10,7 @@ final class ReissueCertificateTest extends TestCase
     {
         $domain = 'www.example.org';
         $request = new CertificateReissueRequest();
-        $request->QuantumCA_id = $_SERVER['QuantumCA_ORDER_ID'];
+        $request->service_id = $_SERVER['SERVICE_ID'];
         $request->csr = $this->csr();
         $request->period = 'Quarterly';
         $request->contact_email = 'test@example.org';
@@ -24,7 +24,7 @@ final class ReissueCertificateTest extends TestCase
 
         }
 
-        $this->assertObjectHasAttribute('QuantumCA_id', $result);
+        $this->assertObjectHasAttribute('service_id', $result);
         $this->assertObjectHasAttribute('cost', $result);
         $this->assertObjectHasAttribute('status', $result);
         $this->assertObjectHasAttribute('dcv', $result);
