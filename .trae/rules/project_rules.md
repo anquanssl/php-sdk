@@ -1,0 +1,2 @@
+- 需要满足 php 5.6～8.4 所有版本的语法
+- 需要保证 php 5.6～8.4 所有版本下 `./vendor/bin/phpunit tests/ApiDocsMockTest.php` 可以正常运行
