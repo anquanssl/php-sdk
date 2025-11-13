@@ -65,6 +65,8 @@ class Client
      */
     protected $readTimeout;
 
+    protected $userAgent = null;
+
     /**
      * @var \GuzzleHttp\Client|null 可注入的HTTP客户端（用于测试/Mock）
      */
@@ -87,6 +89,17 @@ class Client
         //$this->callback = new Callback($this);
     }
 
+    public function setUserAgent($userAgent)
+    {
+        $this->userAgent = $userAgent;
+        return $this;
+    }
+
+    public function getUserAgent()
+    {
+        return $this->userAgent;
+    }
+
     /**
      * @param string|'post'|'get' $method
      * @param string $uri
@@ -102,9 +115,13 @@ class Client
             /**
              * @var \GuzzleHttp\Psr7\Response $response
              */
-            $response = $this->httpClient->{$method}($uri, [
+            $options = [
                 ($method == 'get' ? RequestOptions::QUERY : RequestOptions::JSON) => $data,
-            ]);
+            ];
+            if ($this->userAgent !== null) {
+                $options[RequestOptions::HEADERS] = ['User-Agent' => $this->userAgent];
+            }
+            $response = $this->httpClient->{$method}($uri, $options);
 
             $json = json_decode($response->getBody()->__toString());
 
@@ -126,11 +143,14 @@ class Client
             /**
              * @var \Illuminate\Http\Client\Response $response
              */
-            $response = Http::withoutVerifying()
+            $http = Http::withoutVerifying()
                 ->withoutRedirecting()
                 ->timeout($this->connectTimeout)
-                ->asJson()
-                ->{$method}($uri, $data);
+                ->asJson();
+            if ($this->userAgent !== null) {
+                $http = $http->withHeaders(['User-Agent' => $this->userAgent]);
+            }
+            $response = $http->{$method}($uri, $data);
             if (!$response->successful() || !$response->json('success')) {
                 $exception_class = RequestException::class;
                 $map = static::CODE_EXCEPTION_MAP;
@@ -155,9 +175,13 @@ class Client
             /**
              * @var \GuzzleHttp\Psr7\Response $response
              */
-            $response = $http->{$method}($uri, [
+            $options = [
                 ($method == 'get' ? RequestOptions::QUERY : RequestOptions::JSON) => $data,
-            ]);
+            ];
+            if ($this->userAgent !== null) {
+                $options[RequestOptions::HEADERS] = ['User-Agent' => $this->userAgent];
+            }
+            $response = $http->{$method}($uri, $options);
 
             $json = json_decode($response->getBody()->__toString());
 
