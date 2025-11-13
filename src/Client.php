@@ -2,7 +2,6 @@
 
 namespace QuantumCA\Sdk;
 
-use Exception;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
